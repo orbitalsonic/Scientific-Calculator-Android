@@ -2,7 +2,7 @@
 Scientific Calculator Android
 
 ## Configuration
-This Calculator depends on [Rhino Library]https://github.com/APISENSE/rhino-android
+This Calculator depends on [Rhino Library](https://github.com/APISENSE/rhino-android)
 
 The `ScriptEngine` in rhino feature relies on reflection to instanciate the engines. This will cause trouble while shrinking your code using Proguard or R8.
 use following Proguard in production
