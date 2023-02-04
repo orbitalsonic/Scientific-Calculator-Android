@@ -192,10 +192,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun addTextCalculate(mData: String) {
         val mText = binding.tvInputCalculation.text.toString()
-        val result = mText.filter { it.isDigit() }
-        if (result.length <= 15) {
-            binding.tvInputCalculation.text = "$mText$mData"
-        }
+        binding.tvInputCalculation.text = "$mText$mData"
 
     }
 
