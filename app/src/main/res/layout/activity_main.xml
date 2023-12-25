@@ -49,7 +49,6 @@
                 android:textStyle="bold"
                 />
 
-
             <View
                 android:id="@+id/lineDivider"
                 android:layout_width="0dp"
@@ -92,6 +91,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnDegree"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/btnPower"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -109,6 +109,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnSin"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/btnLog"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -126,6 +127,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnCos"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/btnNaturalLog"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -143,6 +145,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnTan"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/btnParenthesisStart"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -160,6 +163,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/btnParenthesisClose"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
 
@@ -179,6 +183,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnLog"
                 app:layout_constraintTop_toBottomOf="@+id/btnSecond"
                 app:layout_constraintBottom_toTopOf="@+id/btnSquareRoot"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -195,6 +200,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnNaturalLog"
                 app:layout_constraintTop_toBottomOf="@+id/btnDegree"
                 app:layout_constraintBottom_toTopOf="@+id/btnAllClear"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -211,6 +217,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnParenthesisStart"
                 app:layout_constraintTop_toBottomOf="@+id/btnSin"
                 app:layout_constraintBottom_toTopOf="@+id/btnBackClear"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -227,6 +234,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnParenthesisClose"
                 app:layout_constraintTop_toBottomOf="@+id/btnCos"
                 app:layout_constraintBottom_toTopOf="@+id/btnPercentage"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -243,6 +251,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnTan"
                 app:layout_constraintBottom_toTopOf="@+id/btnDivision"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
 
@@ -262,6 +271,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnAllClear"
                 app:layout_constraintTop_toBottomOf="@+id/btnPower"
                 app:layout_constraintBottom_toTopOf="@+id/btnMode"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -341,6 +351,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnSeven"
                 app:layout_constraintTop_toBottomOf="@+id/btnSquareRoot"
                 app:layout_constraintBottom_toTopOf="@+id/btnMultiplicativeInverse"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -419,6 +430,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnFour"
                 app:layout_constraintTop_toBottomOf="@+id/btnMode"
                 app:layout_constraintBottom_toTopOf="@+id/btnPi"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -497,6 +509,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnOne"
                 app:layout_constraintTop_toBottomOf="@+id/btnMultiplicativeInverse"
                 app:layout_constraintBottom_toTopOf="@+id/btnChangeCalculatorLayout"
+                tools:visibility="visible"
                 android:visibility="gone"
                 />
             <TextView
@@ -563,6 +576,7 @@
                 android:id="@+id/btnChangeCalculatorLayout"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
+                tools:visibility="visible"
                 android:visibility="gone"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
@@ -578,6 +592,7 @@
                     android:textSize="@dimen/_18ssp"
                     android:textColor="@color/black"
                     android:gravity="center"
+                    tools:visibility="visible"
                     android:visibility="gone"
                     android:background="@drawable/bg_btn_calculator_number"
                     android:onClick="onClickMethod"
@@ -622,6 +637,7 @@
                     android:background="@drawable/bg_btn_calculator_number"
                     android:onClick="onClickMethod"
                     android:layout_centerInParent="true"
+                    tools:visibility="visible"
                     android:visibility="gone"
                     />
 
