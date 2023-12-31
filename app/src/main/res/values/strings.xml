@@ -15,6 +15,7 @@
     <string name="_6">6</string>
     <string name="_2nd">2nd</string>
     <string name="deg">deg</string>
+    <string name="rad">rad</string>
     <string name="x_power_y">x<sup><small>y</small></sup></string>
     <string name="arcsin">sin<sup><small>-1</small></sup></string>
     <string name="arccos">cos<sup><small>-1</small></sup></string>
@@ -32,16 +33,16 @@
     <string name="minus">−</string>
     <string name="plus">+</string>
     <string name="equal">=</string>
-    <string name="pi">\u03c0</string>
+    <string name="pi">π</string>
     <string name="e">e</string>
     <string name="log">lg</string>
     <string name="ln">ln</string>
-    <string name="sqrt">\u221a</string>
+    <string name="sqrt">√</string>
     <string name="x_mode">|x|</string>
     <string name="sin">sin</string>
     <string name="cos">cos</string>
     <string name="tan">tan</string>
-    <string name="sinh">Sinh</string>
-    <string name="cosh">Cosh</string>
-    <string name="tanh">Tanh</string>
+    <string name="sinh">sinh</string>
+    <string name="cosh">sosh</string>
+    <string name="tanh">tanh</string>
 </resources>

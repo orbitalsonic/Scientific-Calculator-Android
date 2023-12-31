@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 if (isSecondEnable) {
                     addTextCalculate("sin(")
                 } else {
-                    addTextCalculate("arcsin(")
+                    addTextCalculate("asin(")
                 }
 
             }
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                 if (isSecondEnable) {
                     addTextCalculate("cos(")
                 } else {
-                    addTextCalculate("arccos(")
+                    addTextCalculate("acos(")
                 }
 
             }
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 if (isSecondEnable) {
                     addTextCalculate("tan(")
                 } else {
-                    addTextCalculate("arctan(")
+                    addTextCalculate("atan(")
                 }
 
             }
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                 addTextCalculate("ln(")
             }
             R.id.btnSquareRoot -> {
-                addTextCalculate("\u221a(")
+                addTextCalculate("√(")
             }
             R.id.btnMode -> {
                 addTextCalculate("abs(")
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                 addTextCalculate("^(-1)")
             }
             R.id.btnPi -> {
-                addTextCalculate("\u03c0")
+                addTextCalculate("π")
             }
             R.id.btnParenthesisStart -> {
                 addTextCalculate("(")
@@ -217,6 +217,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setVisibilityScientific() {
+        if (isDegreeEnable || !isScientificCalculator){
+            binding.tvRadDeg.visibility = View.INVISIBLE
+        }else{
+            binding.tvRadDeg.visibility = View.VISIBLE
+        }
         if (isScientificCalculator) {
             binding.btnSecond.visibility = View.VISIBLE
             binding.btnDegree.visibility = View.VISIBLE
@@ -279,10 +284,6 @@ class MainActivity : AppCompatActivity() {
             for (index in indexesList.indices) {
                 for (i in indexesList[index] - 1 downTo 0) {
                     if (!isDigit(originalList[i])) {
-                        Log.i("information", "Start index: $i")
-                        Log.i("information", "End index: ${indexesList[index]}")
-                        Log.i("information", originalList.substring(i + 1, indexesList[index] + 2))
-
                         tempData = originalList.substring(i + 1, indexesList[index])
                         temp = temp.replace(
                             "${tempData}\\^\\(".toRegex(),
@@ -296,21 +297,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             result = scriptEngine?.eval(
-                temp.replace("%".toRegex(), "/100")
-                    .replace("x".toRegex(), "*")
-                    .replace("÷".toRegex(), "/")
-                    .replace("sin\\(".toRegex(), "Math.sin(")
-                    .replace("cos\\(".toRegex(), "")
-                    .replace("tan\\(".toRegex(), "Math.Math.cos(tan(")
-                    .replace("arcsin\\(".toRegex(), "Math.sin(")
-                    .replace("arccos\\(".toRegex(), "Math.cos(")
-                    .replace("arctan\\(".toRegex(), "Math.tan(")
-                    .replace("abs\\(".toRegex(), "Math.abs(")
-                    .replace("lg\\(".toRegex(), "Math.log10(")
-                    .replace("ln\\(".toRegex(), "Math.log(")
-                    .replace("\\u221a\\(".toRegex(), "Math.sqrt(")
-                    .replace("\\u03c0".toRegex(), "Math.PI")
-                    .replace("e".toRegex(), "Math.E")
+                replaceOperations(temp)
             ).toString()
 
 
@@ -344,20 +331,79 @@ class MainActivity : AppCompatActivity() {
         return df.format(d)
     }
 
+    private fun replaceOperations(input: String): String {
+        var result = input
+
+        result = result.replace("%", "/100")
+        result = result.replace("x", "*")
+        result = result.replace("÷", "/")
+        result = result.replace("√", "Math.sqrt")
+        result = result.replace("π", "Math.PI")
+        result = result.replace("e", "Math.E")
+
+        if (isSecondEnable){
+            result = result.replace(Regex("""sin\(([^)]+)\)""")) {
+                val value = it.groupValues[1]
+                "Math.sin(${angleConverter(value)})"
+            }
+
+            result = result.replace(Regex("""cos\(([^)]+)\)""")) {
+                val value = it.groupValues[1]
+                "Math.cos(${angleConverter(value)})"
+            }
+
+            result = result.replace(Regex("""tan\(([^)]+)\)""")) {
+                val value = it.groupValues[1]
+                "Math.tan(${angleConverter(value)})"
+            }
+        }else{
+            result = result.replace(Regex("""asin\(([^)]+)\)""")) {
+                val value = it.groupValues[1]
+                if (isDegreeEnable){
+                    "Math.asin($value) * (180 / Math.PI)"
+                }else{
+                    "Math.asin($value)"
+                }
+            }
+
+            result = result.replace(Regex("""acos\(([^)]+)\)""")) {
+                val value = it.groupValues[1]
+                if (isDegreeEnable){
+                    "Math.acos($value) * (180 / Math.PI)"
+                }else{
+                    "Math.acos($value)"
+                }
+
+            }
+
+            result = result.replace(Regex("""atan\(([^)]+)\)""")) {
+                val value = it.groupValues[1]
+                if (isDegreeEnable){
+                    "Math.atan($value) * (180 / Math.PI)"
+                }else{
+                    "Math.atan($value)"
+                }
+
+            }
+        }
+
+        Log.d("myCalculation", result)
+
+        return result
+    }
+
     private fun changingSecond() {
         if (isSecondEnable) {
             isSecondEnable = false
             binding.btnSin.text = resources.getText(R.string.arcsin)
             binding.btnCos.text = resources.getText(R.string.arccos)
             binding.btnTan.text = resources.getText(R.string.arctan)
-            binding.btnDegree.isEnabled = false
 
         } else {
             isSecondEnable = true
             binding.btnSin.text = resources.getText(R.string.sin)
             binding.btnCos.text = resources.getText(R.string.cos)
             binding.btnTan.text = resources.getText(R.string.tan)
-            binding.btnDegree.isEnabled = true
 
         }
     }
@@ -366,13 +412,13 @@ class MainActivity : AppCompatActivity() {
     private fun changingDegree() {
         if (isDegreeEnable) {
             isDegreeEnable = false
-            binding.btnSecond.isEnabled = false
-            binding.btnDegree.text = "rad"
+            binding.btnDegree.text = "deg"
+            binding.tvRadDeg.visibility = View.VISIBLE
 
         } else {
             isDegreeEnable = true
-            binding.btnDegree.text = "deg"
-            binding.btnSecond.isEnabled = true
+            binding.btnDegree.text = "rad"
+            binding.tvRadDeg.visibility = View.INVISIBLE
         }
     }
 
@@ -395,6 +441,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun isDigit(ch: Char): Boolean {
         return Character.isDigit(ch)
+    }
+
+    private fun angleConverter(angle:String):String{
+        try {
+            if (isDegreeEnable){
+                return Math.toRadians(angle.toDouble()).toString()
+            }
+        }catch (ignore:Exception){}
+
+        return angle
     }
 
     fun showMessage(message: String) {
